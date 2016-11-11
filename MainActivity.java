@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     public void getsecondactivity(View view){
         Intent secondscreenintent = new Intent(this, secondscreen.class );
         startActivity(secondscreenintent);
+        // finish();
     }
 }
 
