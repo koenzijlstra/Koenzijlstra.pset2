@@ -1,4 +1,4 @@
-#readme Mad lib (Tarzan)
+# Mad lib (Tarzan)
 
 An app that lets users create a story/mad lib
 
