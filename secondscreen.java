@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import android.widget.Toast;
 import java.io.InputStream;
 
 public class secondscreen extends AppCompatActivity {
@@ -26,7 +24,6 @@ public class secondscreen extends AppCompatActivity {
         createstory();
     }
 
-
     public void createstory () {
 
         stream = this.getResources().openRawResource(R.raw.madlib1_tarzan);
@@ -35,11 +32,10 @@ public class secondscreen extends AppCompatActivity {
 
         // create the text for textview "wordsremaining". shows the amount of words that still
         // need to be f(illed in (getPlaceholderRemainingCount)
-        ;
         remainingTV = (TextView) findViewById(R.id.remaining);
         remainingTV.setText(remains + "word(s) left");
 
-
+        // create hint in textbox
         wordinput = (EditText) findViewById(R.id.editText);
         wordinput.setHint(tarzan.getNextPlaceholder());
         wordinput.setVisibility(View.VISIBLE);
@@ -59,8 +55,6 @@ public class secondscreen extends AppCompatActivity {
 
             // clear the filled in word
             wordinput.setText("");
-            // set the hint to the next placeholder (e.g. noun)
-
 
             // if a word is given by user, so length != 0 => fill the word in into the story, and
             // decrease the words that remain to be filled in
@@ -70,55 +64,25 @@ public class secondscreen extends AppCompatActivity {
                 // change the remaining words text view
                 int remains = tarzan.getPlaceholderRemainingCount();
                 remainingTV.setText(remains + "word(s) left");
+
+                // set the hint to the next placeholder (e.g. noun)
                 wordinput.setHint(tarzan.getNextPlaceholder());
 
             }
             // else (when the length of the word is 0) toast
             else{
-                // toast
-
+                Toast toast = Toast.makeText(this, "Please enter a word", Toast.LENGTH_SHORT);
+                toast.show();
             }
         }
         if (tarzan.isFilledIn()){
-
+            // when all words are filled in, go to last activity and close current one
             String fullstory = tarzan.toString();
             Intent gotostory = new Intent(this, readstory.class);
             gotostory.putExtra("storyretrieval", fullstory);
             startActivity(gotostory);
-
-//            Intent intentname = new Intent(this, SecondActivity.class);
-//            intentname.putExtra(“retrievalname”, string);
-//            startActivity(intentname);
-
+            finish();
         }
-
-
-
-
-
-
-
     }
-
-
-// show remaining words to fill in on screen moet eigenlijk android:hint zijn
-//    int remainingwords = getPlaceholderRemainingCount(tarzan)
-//    TextView tv = (TextView) findViewById(R.id.remaining);
-//    tv.setText(remainingwords + "word(s) left")
-//    }
-
-
-// edit text
-//    fillInPlaceholder(String word)
-
-
-
-    // if all placeholders are filled, go to third and final activity. \
-//    if isFilledIn(tarzan) {
-//        Intent readstoryintent = new Intent(this, readstory.class);
-//        startActivity(readstoryintent);
-//    }
-
-
 }
 

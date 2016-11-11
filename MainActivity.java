@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+
+    // when start button is pressed, go to the second activity (that lets user fill in the words)
     public void getsecondactivity(View view){
         Intent secondscreenintent = new Intent(this, secondscreen.class );
         startActivity(secondscreenintent);
