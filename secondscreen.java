@@ -19,10 +19,6 @@ public class secondscreen extends AppCompatActivity {
     TextView remainingTV;
     int remains;
 
-    // create a boolean, false if the story has not been constructed
-    // true if story is constructed
-    boolean storyinit = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +26,6 @@ public class secondscreen extends AppCompatActivity {
         createstory();
     }
 
-// construct a story
 
     public void createstory () {
 
@@ -65,7 +60,7 @@ public class secondscreen extends AppCompatActivity {
             // clear the filled in word
             wordinput.setText("");
             // set the hint to the next placeholder (e.g. noun)
-            wordinput.setHint(tarzan.getNextPlaceholder());
+
 
             // if a word is given by user, so length != 0 => fill the word in into the story, and
             // decrease the words that remain to be filled in
@@ -75,6 +70,8 @@ public class secondscreen extends AppCompatActivity {
                 // change the remaining words text view
                 int remains = tarzan.getPlaceholderRemainingCount();
                 remainingTV.setText(remains + "word(s) left");
+                wordinput.setHint(tarzan.getNextPlaceholder());
+
             }
             // else (when the length of the word is 0) toast
             else{
